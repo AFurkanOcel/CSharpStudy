@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3_veritabani2
 {
@@ -41,16 +36,16 @@ namespace _3_veritabani2
             SqlConnection connection = new SqlConnection("Data Source=DESKTOP-624K52L; initial Catalog=first_database; integrated security=true");
             connection.Open();
 
-            SqlCommand command = new SqlCommand("Select * From ProductTable", connection); // connention isimli bağlantımıza emiri/sorguyu tanımladık
-            SqlDataAdapter adapter = new SqlDataAdapter(command); // emiri taşıyacak köprü olan adapter ı oluşturduk ve emir i adapter a yükledik
-            DataTable dataTable = new DataTable(); // listelenen verileri, ram üzerinde geçici olarak tutacak datatable isimli tabloyu oluşturduk 
-            adapter.Fill(dataTable); // sorgu çalıştı, adapter ilkolarak sorguyu veritabanına taşıdı, ardından listelenecek verileri veritabanından belleğe taşıdı
+            SqlCommand command = new SqlCommand("Select * From ProductTable", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
 
-            foreach (DataRow row in dataTable.Rows) // datatable daki satırları okuyoruz
+            foreach (DataRow row in dataTable.Rows)
             {
-                foreach (var item in row.ItemArray) // satırların içindeki süunları okuyoruz (var her türlü değişkeni ifade ediyor)
+                foreach (var item in row.ItemArray)
                 {
-                    Console.WriteLine(item.ToString()); // her bir item ı string olarak konsola yazıyoruz
+                    Console.WriteLine(item.ToString());
                 }
                 Console.WriteLine();
             }
